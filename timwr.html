@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pink Countdown</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins', sans-serif;
+    }
+
+    body{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#ff9ecf,#ffcce6);
+    }
+
+    .container{
+        background:white;
+        padding:40px;
+        border-radius:25px;
+        text-align:center;
+        box-shadow:0 10px 30px rgba(255,105,180,0.3);
+        width:350px;
+    }
+
+    h1{
+        color:#ff4fa3;
+        margin-bottom:20px;
+    }
+
+    #countdown{
+        font-size:60px;
+        font-weight:bold;
+        color:#ff4fa3;
+        margin:20px 0;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        border:2px solid #ff9ecf;
+        border-radius:12px;
+        outline:none;
+        text-align:center;
+        font-size:16px;
+        margin-bottom:15px;
+    }
+
+    button{
+        padding:12px 20px;
+        border:none;
+        border-radius:12px;
+        background:#ff4fa3;
+        color:white;
+        cursor:pointer;
+        font-size:16px;
+        margin:5px;
+        transition:0.3s;
+    }
+
+    button:hover{
+        background:#ff2b8a;
+        transform:scale(1.05);
+    }
+
+    .love{
+        margin-top:15px;
+        color:#ff69b4;
+        font-size:20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💖 Countdown Timer 💖</h1>
+
+    <input type="number" id="secondsInput" placeholder="Masukkan detik">
+
+    <div id="countdown">00</div>
+
+    <button onclick="startCountdown()">Mulai</button>
+    <button onclick="resetCountdown()">Reset</button>
+
+    <div class="love">🌸 Pink Aesthetic 🌸</div>
+</div>
+
+<script>
+let timer;
+let timeLeft = 0;
+
+function startCountdown(){
+    clearInterval(timer);
+
+    timeLeft = parseInt(document.getElementById("secondsInput").value);
+
+    if(isNaN(timeLeft) || timeLeft <= 0){
+        alert("Masukkan jumlah detik yang valid!");
+        return;
+    }
+
+    document.getElementById("countdown").innerText = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+
+        document.getElementById("countdown").innerText = timeLeft;
+
+        if(timeLeft <= 0){
+            clearInterval(timer);
+            document.getElementById("countdown").innerText = "💖";
+            alert("Waktu Habis!");
+        }
+    }, 1000);
+}
+
+function resetCountdown(){
+    clearInterval(timer);
+    document.getElementById("countdown").innerText = "00";
+    document.getElementById("secondsInput").value = "";
+}
+</script>
+
+</body>
+</html>
